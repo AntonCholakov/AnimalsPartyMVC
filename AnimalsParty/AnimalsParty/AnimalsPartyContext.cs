@@ -11,9 +11,6 @@ namespace AnimalsParty
     {
         public AnimalsPartyContext() : base("AnimalsPartyDB") { }
 
-        public DbSet<Cat> Cats { get; set; }
-        public DbSet<Dog> Dogs { get; set; }
-        public DbSet<Person> People { get; set; }
         public DbSet<Country> Countries { get; set; }
     }
 }
