@@ -1,0 +1,38 @@
+﻿@model AnimalsParty.ViewModels.CitiesVM.CitiesListVM
+
+@{
+    ViewBag.Title = "List Cities";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Edit")
+</p>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Post Code</th>
+        <th>Country</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Cities) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

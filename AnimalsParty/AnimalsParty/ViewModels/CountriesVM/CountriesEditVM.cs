@@ -12,8 +12,9 @@ namespace AnimalsParty.ViewModels.CountriesVM
         public int ID { get; set; }
 
         [Required(ErrorMessage = "Please input a name! It is required!")]
-        [StringLength(80, MinimumLength=3, ErrorMessage="Minimum lenght is 3")]
+        [StringLength(80, MinimumLength=3, ErrorMessage="Minimum length is 3 and maximum length is 80")]
         [ExcludeChars("!@#$%^&*()_-")]
+        [ExcludeCountry("Bulgaria")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Please input a population! It is required!")]

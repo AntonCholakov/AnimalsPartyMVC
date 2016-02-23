@@ -10,5 +10,7 @@ namespace AnimalsParty.Models
         public string Name { get; set; }
         public int Population { get; set; }
         public DateTime FoundationDate { get; set; }
+
+        public virtual List<City> Cities { get; set; }
     }
 }
