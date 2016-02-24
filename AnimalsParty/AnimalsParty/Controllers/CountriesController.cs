@@ -49,6 +49,7 @@ namespace AnimalsParty.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit()
         {
             CountriesEditVM model = new CountriesEditVM();

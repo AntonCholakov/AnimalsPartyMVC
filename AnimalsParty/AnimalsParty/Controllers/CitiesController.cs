@@ -52,9 +52,8 @@ namespace AnimalsParty.Controllers
             return View(model);
         }
 
-        
-
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit()
         {
             CitiesEditVM model = new CitiesEditVM();
