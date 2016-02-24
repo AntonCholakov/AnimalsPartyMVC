@@ -15,10 +15,10 @@ namespace AnimalsParty.ViewModels.CitiesVM
 
         [Required(ErrorMessage = "Please input a name! It is required!")]
         [StringLength(80, MinimumLength = 3, ErrorMessage = "Minimum length is 3 and maximum length is 80")]
-        [ExcludeChars("!@#$%^&*()_-")]
+        [RegularExpression(@"^([A-z -]+)$", ErrorMessage="Name can consist of letters, spaces and dashes only!")]
         public string Name { get; set; }
 
-        [Range(3, 4, ErrorMessage="PostCode must be 4 digits")]
+        [RegularExpression(@"^(\d{4})$", ErrorMessage="Post Code must be 4 digits")]
         [Display(Name = "Post Code")]
         public int PostCode { get; set; }
 

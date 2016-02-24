@@ -1,5 +1,5 @@
 ﻿using AnimalsParty.Models;
-using AnimalsParty.Repositories;
+using AnimalsParty.Services.EntityServices;
 using AnimalsParty.ViewModels.CitiesVM;
 using System;
 using System.Collections.Generic;
@@ -11,13 +11,13 @@ namespace AnimalsParty.Controllers
 {
     public class CitiesController : Controller
     {
-        CitiesRepository citiesRepo = new CitiesRepository();
+        CitiesService citiesService = new CitiesService();
 
         public ActionResult List()
         {
             CitiesListVM model = new CitiesListVM();
 
-            model.Cities = citiesRepo.GetAll();
+            model.Cities = citiesService.GetAll();
 
             return View(model);
         }
@@ -33,7 +33,7 @@ namespace AnimalsParty.Controllers
             }
             else
             {
-                city = citiesRepo.GetByID(id.Value);
+                city = citiesService.GetByID(id.Value);
                 if (city == null)
                 {
                     return RedirectToAction("List");
@@ -47,20 +47,12 @@ namespace AnimalsParty.Controllers
 
             //model.Countries = new CountriesRepository().GetAll(); 1
             //model.Countries = new SelectList(new CountriesRepository().GetAll(), "ID", "Name"); //2 
-            model.Countries = ToSelectListItem(model, city.CountryID); // 3
+            model.Countries = citiesService.GetSelectedCountries(); // 3
 
             return View(model);
         }
 
-        public IEnumerable<SelectListItem> ToSelectListItem(CitiesEditVM model, int selectedID)
-        {
-            return new CountriesRepository().GetAll().Select(c => new SelectListItem
-                {
-                    Selected = (model.CountryID == selectedID),
-                    Text = c.Name,
-                    Value = c.ID.ToString()
-                });
-        }
+        
 
         [HttpPost]
         public ActionResult Edit()
@@ -70,7 +62,7 @@ namespace AnimalsParty.Controllers
 
             if (!ModelState.IsValid)
             {
-                model.Countries = ToSelectListItem(model, model.CountryID);
+                model.Countries = citiesService.GetSelectedCountries();
                 return View(model);
             }
 
@@ -81,7 +73,7 @@ namespace AnimalsParty.Controllers
             }
             else
             {
-                city = citiesRepo.GetByID(model.ID);
+                city = citiesService.GetByID(model.ID);
                 if (city == null)
                 {
                     return RedirectToAction("List");
@@ -93,7 +85,19 @@ namespace AnimalsParty.Controllers
             city.PostCode = model.PostCode;
             city.CountryID = model.CountryID;
 
-            citiesRepo.Save(city);
+            citiesService.Save(city);
+
+            return RedirectToAction("List");
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return RedirectToAction("List");
+            }
+
+            citiesService.Delete(id.Value);
 
             return RedirectToAction("List");
         }

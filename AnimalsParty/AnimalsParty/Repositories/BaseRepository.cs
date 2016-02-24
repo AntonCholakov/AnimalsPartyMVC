@@ -7,7 +7,7 @@ using System.Web;
 
 namespace AnimalsParty.Repositories
 {
-    public abstract class BaseRepository<T> where T : BaseModel, new()
+    public class BaseRepository<T> where T : BaseModel, new()
     {
         protected readonly AnimalsPartyContext context;
         protected readonly DbSet<T> dbSet;

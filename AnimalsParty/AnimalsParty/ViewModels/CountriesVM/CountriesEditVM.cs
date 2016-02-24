@@ -13,7 +13,7 @@ namespace AnimalsParty.ViewModels.CountriesVM
 
         [Required(ErrorMessage = "Please input a name! It is required!")]
         [StringLength(80, MinimumLength=3, ErrorMessage="Minimum length is 3 and maximum length is 80")]
-        [ExcludeChars("!@#$%^&*()_-")]
+        [RegularExpression(@"^([A-z -]+)$", ErrorMessage = "Name can consist of letters, spaces and dashes only!")]
         [ExcludeCountry("Bulgaria")]
         public string Name { get; set; }
 

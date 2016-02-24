@@ -149,6 +149,9 @@
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\CitiesRepository.cs" />
     <Compile Include="Repositories\CountriesRepository.cs" />
+    <Compile Include="Services\EntityServices\BaseService.cs" />
+    <Compile Include="Services\EntityServices\CitiesService.cs" />
+    <Compile Include="Services\EntityServices\CountriesService.cs" />
     <Compile Include="ViewModels\CitiesVM\CitiesEditVM.cs" />
     <Compile Include="ViewModels\CitiesVM\CitiesListVM.cs" />
     <Compile Include="ViewModels\CountriesVM\CountriesEditVM.cs" />

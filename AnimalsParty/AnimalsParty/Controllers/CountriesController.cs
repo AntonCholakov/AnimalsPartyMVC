@@ -1,5 +1,5 @@
 ﻿using AnimalsParty.Models;
-using AnimalsParty.Repositories;
+using AnimalsParty.Services.EntityServices;
 using AnimalsParty.ViewModels.CountriesVM;
 using System;
 using System.Collections.Generic;
@@ -11,13 +11,13 @@ namespace AnimalsParty.Controllers
 {
     public class CountriesController : Controller
     {
-        CountriesRepository countriesRepo = new CountriesRepository();
+        CountriesService countriesService = new CountriesService();
 
         public ActionResult List()
         {
             CountriesListVM model = new CountriesListVM();
 
-            model.Countries = countriesRepo.GetAll();
+            model.Countries = countriesService.GetAll();
 
             return View(model);
         }
@@ -33,7 +33,7 @@ namespace AnimalsParty.Controllers
             }
             else
             {
-                country = countriesRepo.GetByID(id.Value);
+                country = countriesService.GetByID(id.Value);
                 if (country == null)
                 {
                     return RedirectToAction("List");
@@ -66,7 +66,7 @@ namespace AnimalsParty.Controllers
             }
             else
             {
-                country = countriesRepo.GetByID(model.ID);
+                country = countriesService.GetByID(model.ID);
                 if (country == null)
                 {
                     return RedirectToAction("List");
@@ -78,7 +78,7 @@ namespace AnimalsParty.Controllers
             country.Population = model.Population;
             country.FoundationDate = model.FoundationDate;
 
-            countriesRepo.Save(country);
+            countriesService.Save(country);
 
             return RedirectToAction("List");
         }
@@ -90,7 +90,7 @@ namespace AnimalsParty.Controllers
                 return RedirectToAction("List");
             }
 
-            countriesRepo.Delete(id.Value);
+            countriesService.Delete(id.Value);
 
             return RedirectToAction("List");
         }
