@@ -6,7 +6,7 @@ using AnimalsParty.Models;
 
 namespace AnimalsParty.ViewModels.CitiesVM
 {
-    public class CitiesListVM
+    public class CitiesListVM : ListVM
     {
         public List<City> Cities { get; set; }
     }

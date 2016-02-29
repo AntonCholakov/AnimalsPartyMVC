@@ -16,8 +16,33 @@ namespace AnimalsParty.Controllers
         public ActionResult List()
         {
             CitiesListVM model = new CitiesListVM();
+            TryUpdateModel(model);
 
             model.Cities = citiesService.GetAll();
+
+            if (!String.IsNullOrEmpty(model.Search))
+            {
+                model.Cities = model.Cities.Where(c => c.Name.ToLower().Contains(model.Search.ToLower())).ToList();
+            }
+
+            model.Props = new Dictionary<string, object>();
+
+            switch (model.SortOrder)
+            {
+                case "country_asc":
+                    model.Cities = model.Cities.OrderBy(c => c.Country.Name).ToList();
+                    break;
+                case "country_desc":
+                    model.Cities = model.Cities.OrderByDescending(c => c.Country.Name).ToList();
+                    break;
+                case "name_desc":
+                    model.Cities = model.Cities.OrderByDescending(c => c.Name).ToList();
+                    break;
+                case "name_asc":
+                default:
+                    model.Cities = model.Cities.OrderBy(c => c.Name).ToList();
+                    break;
+            }
 
             return View(model);
         }

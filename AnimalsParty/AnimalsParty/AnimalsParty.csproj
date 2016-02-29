@@ -156,6 +156,7 @@
     <Compile Include="ViewModels\CitiesVM\CitiesListVM.cs" />
     <Compile Include="ViewModels\CountriesVM\CountriesEditVM.cs" />
     <Compile Include="ViewModels\CountriesVM\CountriesListVM.cs" />
+    <Compile Include="ViewModels\ListVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

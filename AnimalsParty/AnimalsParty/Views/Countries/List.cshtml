@@ -9,11 +9,38 @@
 <p>
     @Html.ActionLink("Create New", "Edit")
 </p>
+
+@using (Html.BeginForm("List", "Countries", FormMethod.Get))
+{
+    <div>
+        Find by name: @Html.TextBoxFor(model => model.Search, new { @class = "form-control" })
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+}
+
 <table class="table">
     <tr>
-        <th>Name</th>
-        <th>Population</th>
-        <th>Foundation Date</th>
+        <th>
+            @{
+                Model.Props["SortOrder"] = Model.SortOrder == "name_desc" ? "name_asc" : "name_desc";
+                Model.Props["Search"] = Model.Search;
+                @Html.ActionLink("Name", "List", "Countries", new RouteValueDictionary(Model.Props), null)
+            }
+        </th>
+        <th>
+            @{
+                Model.Props["SortOrder"] = Model.SortOrder == "population_asc" ? "population_desc" : "population_asc";
+                Model.Props["Search"] = Model.Search;
+                @Html.ActionLink("Population", "List", "Countries", new RouteValueDictionary(Model.Props), null)
+            }
+        </th>
+        <th>
+            @{
+                Model.Props["SortOrder"] = Model.SortOrder == "date_desc" ? "date_asc" : "date_desc";
+                Model.Props["Search"] = Model.Search;
+                @Html.ActionLink("Foundation Date", "List", "Countries", new RouteValueDictionary(Model.Props), null)
+            }
+        </th>
         <th></th>
     </tr>
 

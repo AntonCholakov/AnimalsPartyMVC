@@ -16,8 +16,39 @@ namespace AnimalsParty.Controllers
         public ActionResult List()
         {
             CountriesListVM model = new CountriesListVM();
+            TryUpdateModel(model);
 
             model.Countries = countriesService.GetAll();
+
+            if (!String.IsNullOrEmpty(model.Search))
+            {
+                model.Countries = model.Countries.Where(c => c.Name.ToLower().Contains(model.Search.ToLower())).ToList();
+            }
+
+            model.Props = new Dictionary<string, object>();
+
+            switch (model.SortOrder)
+            {
+                case "population_asc":
+                    model.Countries = model.Countries.OrderBy(c => c.Population).ToList();
+                    break;
+                case "population_desc":
+                    model.Countries = model.Countries.OrderByDescending(c => c.Population).ToList();
+                    break;
+                case "date_asc":
+                    model.Countries = model.Countries.OrderBy(c => c.FoundationDate).ToList();
+                    break;
+                case "date_desc":
+                    model.Countries = model.Countries.OrderByDescending(c => c.FoundationDate).ToList();
+                    break;
+                case "name_desc":
+                    model.Countries = model.Countries.OrderByDescending(c => c.Name).ToList();
+                    break;
+                case "name_asc":
+                default:
+                    model.Countries = model.Countries.OrderBy(c => c.Name).ToList();
+                    break;
+            }
 
             return View(model);
         }
