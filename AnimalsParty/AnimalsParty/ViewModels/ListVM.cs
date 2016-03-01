@@ -10,7 +10,5 @@ namespace AnimalsParty.ViewModels
         public string Search { get; set; }
 
         public string SortOrder { get; set; }
-
-        public Dictionary<string, object> Props { get; set; }
     }
 }

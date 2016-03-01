@@ -22,23 +22,17 @@
     <tr>
         <th>
             @{
-                Model.Props["SortOrder"] = Model.SortOrder == "name_desc" ? "name_asc" : "name_desc";
-                Model.Props["Search"] = Model.Search;
-                @Html.ActionLink("Name", "List", "Countries", new RouteValueDictionary(Model.Props), null)
+                @Html.ActionLink("Name", "List", "Countries", new RouteValueDictionary { { "SortOrder", Model.SortOrder == "name_desc" ? "name_asc" : "name_desc" }, { "Search", Model.Search } }, null)
             }
         </th>
         <th>
             @{
-                Model.Props["SortOrder"] = Model.SortOrder == "population_asc" ? "population_desc" : "population_asc";
-                Model.Props["Search"] = Model.Search;
-                @Html.ActionLink("Population", "List", "Countries", new RouteValueDictionary(Model.Props), null)
+                @Html.ActionLink("Population", "List", "Countries", new RouteValueDictionary { { "SortOrder", Model.SortOrder == "population_asc" ? "population_desc" : "population_asc" }, { "Search", Model.Search } }, null)
             }
         </th>
         <th>
             @{
-                Model.Props["SortOrder"] = Model.SortOrder == "date_desc" ? "date_asc" : "date_desc";
-                Model.Props["Search"] = Model.Search;
-                @Html.ActionLink("Foundation Date", "List", "Countries", new RouteValueDictionary(Model.Props), null)
+                @Html.ActionLink("Foundation Date", "List", "Countries", new RouteValueDictionary { { "SortOrder", Model.SortOrder == "date_desc" ? "date_asc" : "date_desc" }, { "Search", Model.Search } }, null)
             }
         </th>
         <th></th>

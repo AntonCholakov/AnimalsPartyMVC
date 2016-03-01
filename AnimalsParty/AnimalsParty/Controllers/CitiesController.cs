@@ -25,8 +25,6 @@ namespace AnimalsParty.Controllers
                 model.Cities = model.Cities.Where(c => c.Name.ToLower().Contains(model.Search.ToLower())).ToList();
             }
 
-            model.Props = new Dictionary<string, object>();
-
             switch (model.SortOrder)
             {
                 case "country_asc":
