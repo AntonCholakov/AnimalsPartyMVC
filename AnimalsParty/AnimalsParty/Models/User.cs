@@ -22,6 +22,8 @@ namespace AnimalsParty.Models
         public int CityID { get; set; }
 
         public virtual City City { get; set; }
+
+        public virtual List<Team> Teams { get; set; }
     }
 
     public enum UserRoleEnum { Admin, User }

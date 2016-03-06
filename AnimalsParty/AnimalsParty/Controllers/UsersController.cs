@@ -87,6 +87,7 @@ namespace AnimalsParty.Controllers
             //model.Countries = new CountriesRepository().GetAll(); 1
             //model.Countries = new SelectList(new CountriesRepository().GetAll(), "ID", "Name"); //2 
             model.Cities = usersService.GetSelectedCities(); // 3
+            model.Teams = usersService.GetSelectedTeams(user.Teams);
 
             return View(model);
         }

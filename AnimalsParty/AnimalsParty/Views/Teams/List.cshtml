@@ -1,0 +1,51 @@
+﻿@model AnimalsParty.ViewModels.TeamsVM.TeamsListVM
+
+@{
+    ViewBag.Title = "List Teams";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Edit")
+</p>
+
+@using (Html.BeginForm("List", "Teams", FormMethod.Get))
+{
+    <div>
+        Find by name: @Html.TextBoxFor(model => model.Search, new { @class = "form-control" })
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+}
+
+@if (Model.Teams.Count == 0)
+{
+    <div class="alert alert-info">No Teams Found</div>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                @{
+                    @Html.ActionLink("Name", "List", "Teams", new RouteValueDictionary { { "SortOrder", Model.SortOrder == "name_asc" ? "name_desc" : "name_asc" }, { "Search", Model.Search }}, null)
+                }
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Teams)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+}

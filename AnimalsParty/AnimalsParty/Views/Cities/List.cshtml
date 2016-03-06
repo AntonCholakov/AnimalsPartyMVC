@@ -31,7 +31,11 @@ else
                     @Html.ActionLink("Name", "List", "Cities", new RouteValueDictionary { { "SortOrder", Model.SortOrder == "name_desc" ? "name_asc" : "name_desc" }, { "Search", Model.Search } }, null)
                 }
             </th>
-            <th>Post Code</th>
+            <th>
+                @{
+                    @Html.ActionLink("Post Code", "List", "Cities", new RouteValueDictionary { {"SortOrder", Model.SortOrder == "postcode_desc" ? "postcode_asc" : "postcode_desc"}, {"Search", Model.Search}}, null)
+                }
+            </th>
             <th>
                 @{
                     @Html.ActionLink("Country", "List", "Cities", new RouteValueDictionary { { "SortOrder", Model.SortOrder == "country_desc" ? "country_asc" : "country_desc" }, { "Search", Model.Search } }, null)

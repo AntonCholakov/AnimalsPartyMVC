@@ -33,6 +33,12 @@ namespace AnimalsParty.Controllers
                 case "country_desc":
                     model.Cities = model.Cities.OrderByDescending(c => c.Country.Name).ToList();
                     break;
+                case "postcode_asc":
+                    model.Cities = model.Cities.OrderBy(c => c.PostCode).ToList();
+                    break;
+                case "postcode_desc":
+                    model.Cities = model.Cities.OrderByDescending(c => c.PostCode).ToList();
+                    break;
                 case "name_desc":
                     model.Cities = model.Cities.OrderByDescending(c => c.Name).ToList();
                     break;

@@ -20,5 +20,20 @@ namespace AnimalsParty.Services.EntityServices
                 Value = c.ID.ToString()
             });
         }
+
+        public IEnumerable<SelectListItem> GetSelectedTeams(List<Team> teams)
+        {
+            if (teams == null)
+                teams = new List<Team>();
+
+            var selectedIds = teams.Select(t => t.ID);
+
+            return new TeamsRepository().GetAll().Select(t => new SelectListItem
+            {
+                Text = t.Name,
+                Value = t.ID.ToString(),
+                Selected = selectedIds.Contains(t.ID)
+            });
+        }
     }
 }

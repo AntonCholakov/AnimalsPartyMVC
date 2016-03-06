@@ -134,33 +134,36 @@
     <Compile Include="Attributes\ExcludeCountryAttribute.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602212049585_Init.cs" />
-    <Compile Include="Migrations\201602212049585_Init.Designer.cs">
-      <DependentUpon>201602212049585_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Team.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\CitiesRepository.cs" />
     <Compile Include="Repositories\CountriesRepository.cs" />
+    <Compile Include="Repositories\TeamsRepository.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />
     <Compile Include="Services\EntityServices\BaseService.cs" />
     <Compile Include="Services\EntityServices\CitiesService.cs" />
     <Compile Include="Services\EntityServices\CountriesService.cs" />
+    <Compile Include="Services\EntityServices\TeamsService.cs" />
     <Compile Include="Services\EntityServices\UsersService.cs" />
     <Compile Include="ViewModels\CitiesVM\CitiesEditVM.cs" />
     <Compile Include="ViewModels\CitiesVM\CitiesListVM.cs" />
     <Compile Include="ViewModels\CountriesVM\CountriesEditVM.cs" />
     <Compile Include="ViewModels\CountriesVM\CountriesListVM.cs" />
     <Compile Include="ViewModels\ListVM.cs" />
+    <Compile Include="ViewModels\TeamsVM\TeamsEditVM.cs" />
+    <Compile Include="ViewModels\TeamsVM\TeamsListVM.cs" />
     <Compile Include="ViewModels\UsersVM\UsersEditVM.cs" />
     <Compile Include="ViewModels\UsersVM\UsersListVM.cs" />
   </ItemGroup>
@@ -176,6 +179,9 @@
     <Content Include="Views\Cities\Edit.cshtml" />
     <Content Include="Views\Users\List.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Teams\List.cshtml" />
+    <Content Include="Views\Teams\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -185,11 +191,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602212049585_Init.resx">
-      <DependentUpon>201602212049585_Init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
