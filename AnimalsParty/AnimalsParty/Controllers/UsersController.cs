@@ -127,6 +127,8 @@ namespace AnimalsParty.Controllers
             user.UserRole = model.UserRole;
             user.CityID = model.CityID;
 
+            usersService.UpdateUserTeams(user, model.SelectedTeams);
+
             usersService.Save(user);
 
             return RedirectToAction("List");

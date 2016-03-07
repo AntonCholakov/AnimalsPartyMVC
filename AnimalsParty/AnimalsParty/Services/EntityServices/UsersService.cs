@@ -35,5 +35,26 @@ namespace AnimalsParty.Services.EntityServices
                 Selected = selectedIds.Contains(t.ID)
             });
         }
+
+        public void UpdateUserTeams(User user, string[] selectedIds)
+        {
+            if (selectedIds != null)
+                selectedIds = new string[0];
+
+            user.Teams.Clear();
+
+            foreach (Team team in new TeamsRepository().GetAll())
+            {
+                if (selectedIds.Contains(team.ID.ToString()))
+                {
+                    user.Teams.Add(team);
+                }
+            }
+
+            //foreach (Team team in new TeamsRepository().GetAll().Where(t => selectedIds.Contains(t.ID.ToString())))
+            //{
+            //    user.Teams.Add(team);
+            //}
+        }
     }
 }

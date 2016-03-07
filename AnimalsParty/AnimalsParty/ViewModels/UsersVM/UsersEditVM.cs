@@ -43,6 +43,8 @@ namespace AnimalsParty.ViewModels.UsersVM
         public int CityID { get; set; }
 
         public IEnumerable<SelectListItem> Cities { get; set; }
+
         public IEnumerable<SelectListItem> Teams { get; set; }
+        public string[] SelectedTeams { get; set; }
     }
 }

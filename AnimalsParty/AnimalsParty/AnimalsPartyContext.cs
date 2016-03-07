@@ -15,7 +15,5 @@ namespace AnimalsParty
         public DbSet<City> Cities { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Team> Teams { get; set; }
-
-        public System.Data.Entity.DbSet<AnimalsParty.ViewModels.TeamsVM.TeamsEditVM> TeamsEditVMs { get; set; }
     }
 }

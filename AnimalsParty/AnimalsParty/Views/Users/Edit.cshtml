@@ -68,7 +68,7 @@
 			<div class="col-md-10">
 				@foreach (var team in Model.Teams)
 				{
-					<input type="checkbox" value="@team.Value" id="@team.Value" @Html.Raw(team.Selected ? "checked" : String.Empty) />
+					<input type="checkbox" name="SelectedTeams" value="@team.Value" id="@team.Value" @Html.Raw(team.Selected ? "checked" : String.Empty) />
 					<label for="@team.Value">@team.Text</label>
 				}
 			</div>
