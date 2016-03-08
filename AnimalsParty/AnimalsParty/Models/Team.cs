@@ -9,6 +9,6 @@ namespace AnimalsParty.Models
     {
         public string Name { get; set; }
 
-        public virtual List<User> User { get; set; }
+        public virtual List<User> Users { get; set; }
     }
 }
