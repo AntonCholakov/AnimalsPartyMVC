@@ -9,5 +9,7 @@ namespace AnimalsParty.Repositories
     public class UsersRepository : BaseRepository<User>
     {
         public UsersRepository() : base() { }
+
+        public UsersRepository(UnitOfWork unitOfWork) : base(unitOfWork) { }
     }
 }

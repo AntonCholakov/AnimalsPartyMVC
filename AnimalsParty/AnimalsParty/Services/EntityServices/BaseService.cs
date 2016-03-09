@@ -10,9 +10,12 @@ namespace AnimalsParty.Services.EntityServices
     public class BaseService<T> where T : BaseModel, new()
     {
         private readonly BaseRepository<T> repository;
+        protected UnitOfWork unitOfWork;
+
         public BaseService()
         {
-            repository = new BaseRepository<T>();
+            this.unitOfWork = new UnitOfWork();
+            repository = new BaseRepository<T>(this.unitOfWork);
         }
 
         public List<T> GetAll()
@@ -27,7 +30,15 @@ namespace AnimalsParty.Services.EntityServices
 
         public void Save(T item)
         {
-            repository.Save(item);
+            try
+            {
+                repository.Save(item);
+                this.unitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                this.unitOfWork.RollBack();
+            }
         }
 
         public void Delete(int id)

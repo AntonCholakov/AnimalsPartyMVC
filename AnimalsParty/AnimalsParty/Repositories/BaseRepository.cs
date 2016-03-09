@@ -9,13 +9,22 @@ namespace AnimalsParty.Repositories
 {
     public class BaseRepository<T> where T : BaseModel, new()
     {
-        protected readonly AnimalsPartyContext context;
+        protected readonly DbContext context;
         protected readonly DbSet<T> dbSet;
+        protected UnitOfWork unitOfWork;
 
         public BaseRepository()
         {
             this.context = new AnimalsPartyContext();
             this.dbSet = context.Set<T>();
+        }
+
+        public BaseRepository(UnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+
+            this.context = this.unitOfWork.Context;
+            this.dbSet = this.context.Set<T>();
         }
 
         public T GetByID(int id)

@@ -151,6 +151,7 @@
     <Compile Include="Repositories\CitiesRepository.cs" />
     <Compile Include="Repositories\CountriesRepository.cs" />
     <Compile Include="Repositories\TeamsRepository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />
     <Compile Include="Services\EntityServices\BaseService.cs" />
     <Compile Include="Services\EntityServices\CitiesService.cs" />

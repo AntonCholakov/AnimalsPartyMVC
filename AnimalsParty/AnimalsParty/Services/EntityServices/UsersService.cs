@@ -38,12 +38,12 @@ namespace AnimalsParty.Services.EntityServices
 
         public void UpdateUserTeams(User user, string[] selectedIds)
         {
-            if (selectedIds != null)
+            if (selectedIds == null)
                 selectedIds = new string[0];
 
             user.Teams.Clear();
 
-            foreach (Team team in new TeamsRepository().GetAll())
+            foreach (Team team in new TeamsRepository(base.unitOfWork).GetAll())
             {
                 if (selectedIds.Contains(team.ID.ToString()))
                 {
