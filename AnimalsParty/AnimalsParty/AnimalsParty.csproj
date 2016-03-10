@@ -183,6 +183,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Teams\List.cshtml" />
     <Content Include="Views\Teams\Edit.cshtml" />
+    <Content Include="Views\Shared\PartialViews\_DeleteConfirmation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

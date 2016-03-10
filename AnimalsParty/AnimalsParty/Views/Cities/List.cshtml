@@ -33,7 +33,7 @@ else
             </th>
             <th>
                 @{
-                    @Html.ActionLink("Post Code", "List", "Cities", new RouteValueDictionary { {"SortOrder", Model.SortOrder == "postcode_desc" ? "postcode_asc" : "postcode_desc"}, {"Search", Model.Search}}, null)
+                    @Html.ActionLink("Post Code", "List", "Cities", new RouteValueDictionary { { "SortOrder", Model.SortOrder == "postcode_desc" ? "postcode_asc" : "postcode_desc" }, { "Search", Model.Search } }, null)
                 }
             </th>
             <th>
@@ -58,10 +58,16 @@ else
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    <a href="#" data-toggle="modal" data-target="#modal-delete-confirmation" data-url="/Cities/Delete/@item.ID" data-additionalinfo="@item.Name">
+                        Delete
+                    </a>
                 </td>
             </tr>
         }
 
     </table>
+}
+
+@section FooterSection {
+    @Html.Partial("~/Views/Shared/PartialViews/_DeleteConfirmation.cshtml")
 }

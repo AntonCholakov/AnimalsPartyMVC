@@ -24,11 +24,11 @@
 }
 else
 {
-    <table class="table">
+    <table class="table table-hover table-striped table-bordered">
         <tr>
             <th>
                 @{
-                    @Html.ActionLink("Name", "List", "Teams", new RouteValueDictionary { { "SortOrder", Model.SortOrder == "name_asc" ? "name_desc" : "name_asc" }, { "Search", Model.Search }}, null)
+                    @Html.ActionLink("Name", "List", "Teams", new RouteValueDictionary { { "SortOrder", Model.SortOrder == "name_asc" ? "name_desc" : "name_asc" }, { "Search", Model.Search } }, null)
                 }
             </th>
             <th></th>
@@ -42,10 +42,16 @@ else
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    <a href="#" data-toggle="modal" data-target="#modal-delete-confirmation" data-url="/Teams/Delete/@item.ID" data-additionalinfo="@item.Name">
+                        Delete
+                    </a>
                 </td>
             </tr>
         }
 
     </table>
+}
+
+@section FooterSection {
+    @Html.Partial("~/Views/Shared/PartialViews/_DeleteConfirmation.cshtml")
 }

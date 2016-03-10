@@ -58,10 +58,16 @@ else
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    <a href="#" data-toggle="modal" data-target="#modal-delete-confirmation" data-url="/Countries/Delete/@item.ID" data-additionalinfo="@item.Name">
+                        Delete
+                    </a>
                 </td>
             </tr>
         }
 
     </table>
+}
+
+@section FooterSection {
+    @Html.Partial("~/Views/Shared/PartialViews/_DeleteConfirmation.cshtml")
 }
