@@ -18,6 +18,12 @@ namespace AnimalsParty.Services.EntityServices
             repository = new BaseRepository<T>(this.unitOfWork);
         }
 
+        public BaseService(UnitOfWork unitOfWork) : this()
+        {
+            this.unitOfWork = unitOfWork;
+            repository = new BaseRepository<T>(this.unitOfWork);
+        }
+
         public List<T> GetAll()
         {
             return repository.GetAll();
@@ -43,7 +49,15 @@ namespace AnimalsParty.Services.EntityServices
 
         public void Delete(int id)
         {
-            repository.Delete(id);
+            try
+            {
+                repository.Delete(id);
+                this.unitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                this.unitOfWork.RollBack();
+            }
         }
     }
 }

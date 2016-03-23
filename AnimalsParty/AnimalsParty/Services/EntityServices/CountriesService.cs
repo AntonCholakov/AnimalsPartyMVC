@@ -10,5 +10,7 @@ namespace AnimalsParty.Services.EntityServices
     public class CountriesService : BaseService<Country>
     {
         public CountriesService() : base() { }
+
+        public CountriesService(UnitOfWork unitOfWork) : base() { }
     }
 }

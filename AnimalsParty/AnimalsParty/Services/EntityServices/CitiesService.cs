@@ -13,6 +13,8 @@ namespace AnimalsParty.Services.EntityServices
     {
         public CitiesService() : base() { }
 
+        public CitiesService(UnitOfWork unitOfWork) : base() { }
+
         public IEnumerable<SelectListItem> GetSelectedCountries()
         {
             return new CountriesRepository().GetAll().Select(c => new SelectListItem

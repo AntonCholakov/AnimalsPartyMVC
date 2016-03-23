@@ -12,6 +12,8 @@ namespace AnimalsParty.Services.EntityServices
     {
         public UsersService() : base() { }
 
+        public UsersService(UnitOfWork unitOfWork) : base() { }
+
         public IEnumerable<SelectListItem> GetSelectedCities()
         {
             return new CitiesRepository().GetAll().Select(c => new SelectListItem
@@ -21,18 +23,21 @@ namespace AnimalsParty.Services.EntityServices
             });
         }
 
-        public IEnumerable<SelectListItem> GetSelectedTeams(List<Team> teams)
+        public IEnumerable<SelectListItem> GetSelectedTeams(List<Team> teams, string[] selectedTeams = null)
         {
             if (teams == null)
                 teams = new List<Team>();
 
-            var selectedIds = teams.Select(t => t.ID);
+            List<string> selectedIds = teams.Select(t => t.ID.ToString()).ToList();
+
+            if (selectedTeams != null)
+                selectedIds.AddRange(selectedTeams);
 
             return new TeamsRepository().GetAll().Select(t => new SelectListItem
             {
                 Text = t.Name,
                 Value = t.ID.ToString(),
-                Selected = selectedIds.Contains(t.ID)
+                Selected = selectedIds.Contains(t.ID.ToString())
             });
         }
 
@@ -40,6 +45,9 @@ namespace AnimalsParty.Services.EntityServices
         {
             if (selectedIds == null)
                 selectedIds = new string[0];
+
+            if (user.Teams == null)
+                user.Teams = new List<Team>();
 
             user.Teams.Clear();
 

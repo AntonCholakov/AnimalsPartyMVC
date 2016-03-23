@@ -1,4 +1,5 @@
 ﻿using AnimalsParty.Models;
+using AnimalsParty.Repositories;
 using AnimalsParty.Services.EntityServices;
 using AnimalsParty.ViewModels.UsersVM;
 using System;
@@ -11,10 +12,10 @@ namespace AnimalsParty.Controllers
 {
     public class UsersController : Controller
     {
-        UsersService usersService = new UsersService();
-
         public ActionResult List()
         {
+            UsersService usersService = new UsersService();
+
             UsersListVM model = new UsersListVM();
             TryUpdateModel(model);
 
@@ -60,6 +61,8 @@ namespace AnimalsParty.Controllers
 
         public ActionResult Edit(int? id)
         {
+            UsersService usersService = new UsersService();
+
             UsersEditVM model = new UsersEditVM();
             User user;
 
@@ -96,14 +99,11 @@ namespace AnimalsParty.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit()
         {
+            UnitOfWork unitOfWork = new UnitOfWork();
+            UsersService usersService = new UsersService(unitOfWork);
+
             UsersEditVM model = new UsersEditVM();
             TryUpdateModel(model);
-
-            if (!ModelState.IsValid)
-            {
-                model.Cities = usersService.GetSelectedCities();
-                return View(model);
-            }
 
             User user;
             if (model.ID == 0)
@@ -117,6 +117,14 @@ namespace AnimalsParty.Controllers
                 {
                     return RedirectToAction("List");
                 }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                model.Cities = usersService.GetSelectedCities();
+                model.Teams = usersService.GetSelectedTeams(user.Teams, model.SelectedTeams);
+
+                return View(model);
             }
 
             user.ID = model.ID;
@@ -136,6 +144,9 @@ namespace AnimalsParty.Controllers
 
         public ActionResult Delete(int? id)
         {
+            UnitOfWork unitOfWork = new UnitOfWork();
+            UsersService usersService = new UsersService(unitOfWork);
+
             if (!id.HasValue)
             {
                 return RedirectToAction("List");
