@@ -132,11 +132,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Attributes\ExcludeCharsAttribute.cs" />
     <Compile Include="Attributes\ExcludeCountryAttribute.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Filters\AuthenticationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -153,11 +156,13 @@
     <Compile Include="Repositories\TeamsRepository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />
+    <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\EntityServices\BaseService.cs" />
     <Compile Include="Services\EntityServices\CitiesService.cs" />
     <Compile Include="Services\EntityServices\CountriesService.cs" />
     <Compile Include="Services\EntityServices\TeamsService.cs" />
     <Compile Include="Services\EntityServices\UsersService.cs" />
+    <Compile Include="ViewModels\AccountVM\AccountLoginVM.cs" />
     <Compile Include="ViewModels\CitiesVM\CitiesEditVM.cs" />
     <Compile Include="ViewModels\CitiesVM\CitiesListVM.cs" />
     <Compile Include="ViewModels\CountriesVM\CountriesEditVM.cs" />
@@ -184,6 +189,7 @@
     <Content Include="Views\Teams\List.cshtml" />
     <Content Include="Views\Teams\Edit.cshtml" />
     <Content Include="Views\Shared\PartialViews\_DeleteConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

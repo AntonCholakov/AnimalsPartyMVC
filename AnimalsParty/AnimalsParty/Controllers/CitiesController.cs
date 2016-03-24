@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace AnimalsParty.Controllers
 {
-    public class CitiesController : Controller
+    public class CitiesController : BaseController
     {
         CitiesService citiesService = new CitiesService();
 

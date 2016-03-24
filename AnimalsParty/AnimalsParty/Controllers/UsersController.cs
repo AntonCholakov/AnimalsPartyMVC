@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace AnimalsParty.Controllers
 {
-    public class UsersController : Controller
+    public class UsersController : BaseController
     {
         public ActionResult List()
         {
