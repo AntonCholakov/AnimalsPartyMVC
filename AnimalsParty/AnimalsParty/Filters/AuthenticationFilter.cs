@@ -11,11 +11,28 @@ namespace AnimalsParty.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            if (HttpContext.Current.Response.Cookies["rememberMe"] != null)
+            {
+                CookieService.AuthenticateUser();
+            }
+
             if (AuthenticationService.LoggedUser == null)
             {
                 filterContext.HttpContext.Response.Redirect("~/Account/Login?RedirectUrl=" + filterContext.HttpContext.Request.Url);
                 filterContext.Result = new EmptyResult();
             }
+
+            //if (HttpContext.Current.Session["LoggedUser"] != null)
+            //{
+            //    AnimalsParty.Models.User user = HttpContext.Current.Session["LoggedUser"] as AnimalsParty.Models.User;
+            //    int a = 3;
+            //}
+            //else
+            //{
+            //    int b = 5;
+            //}
+
+
         }
     }
 }

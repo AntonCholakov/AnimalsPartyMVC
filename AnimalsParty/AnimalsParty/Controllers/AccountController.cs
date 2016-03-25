@@ -28,7 +28,10 @@ namespace AnimalsParty.Controllers
 
             if (AuthenticationService.LoggedUser != null)
             {
-                return Redirect(model.RedirectUrl);
+                if (!String.IsNullOrEmpty(model.RedirectUrl))
+                    return Redirect(model.RedirectUrl);
+
+                return RedirectToAction("Index", "Home");
             }
 
             return View(model);

@@ -157,6 +157,7 @@
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
+    <Compile Include="Services\CookieService.cs" />
     <Compile Include="Services\EntityServices\BaseService.cs" />
     <Compile Include="Services\EntityServices\CitiesService.cs" />
     <Compile Include="Services\EntityServices\CountriesService.cs" />

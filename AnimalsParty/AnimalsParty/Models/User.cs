@@ -17,6 +17,8 @@ namespace AnimalsParty.Models
 
         public string LastName { get; set; }
 
+        public string RememberMeHash { get; set; }
+
         public UserRoleEnum UserRole { get; set; }
 
         public int CityID { get; set; }
