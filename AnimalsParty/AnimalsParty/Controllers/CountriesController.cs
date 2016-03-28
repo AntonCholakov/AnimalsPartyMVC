@@ -11,10 +11,10 @@ namespace AnimalsParty.Controllers
 {
     public class CountriesController : BaseController
     {
-        CountriesService countriesService = new CountriesService();
-
         public ActionResult List()
         {
+            CountriesService countriesService = new CountriesService();
+
             CountriesListVM model = new CountriesListVM();
             TryUpdateModel(model);
 
@@ -53,6 +53,8 @@ namespace AnimalsParty.Controllers
 
         public ActionResult Edit(int? id)
         {
+            CountriesService countriesService = new CountriesService();
+
             CountriesEditVM model = new CountriesEditVM();
             Country country;
 
@@ -81,6 +83,8 @@ namespace AnimalsParty.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit()
         {
+            CountriesService countriesService = new CountriesService();
+
             CountriesEditVM model = new CountriesEditVM();
             TryUpdateModel(model);
 
@@ -115,6 +119,8 @@ namespace AnimalsParty.Controllers
 
         public ActionResult Delete(int? id)
         {
+            CountriesService countriesService = new CountriesService();
+
             if (!id.HasValue)
             {
                 return RedirectToAction("List");

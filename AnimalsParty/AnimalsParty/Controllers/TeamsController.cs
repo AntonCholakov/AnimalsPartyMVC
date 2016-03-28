@@ -11,9 +11,10 @@ namespace AnimalsParty.Controllers
 {
     public class TeamsController : BaseController
     {
-        TeamsService teamsService = new TeamsService();
         public ActionResult List()
         {
+            TeamsService teamsService = new TeamsService();
+
             TeamsListVM model = new TeamsListVM();
             TryUpdateModel(model);
 
@@ -40,6 +41,8 @@ namespace AnimalsParty.Controllers
 
         public ActionResult Edit(int? id)
         {
+            TeamsService teamsService = new TeamsService();
+
             TeamsEditVM model = new TeamsEditVM();
             Team team;
 
@@ -66,6 +69,8 @@ namespace AnimalsParty.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit()
         {
+            TeamsService teamsService = new TeamsService();
+
             TeamsEditVM model = new TeamsEditVM();
             TryUpdateModel(model);
 
@@ -98,6 +103,8 @@ namespace AnimalsParty.Controllers
 
         public ActionResult Delete(int? id)
         {
+            TeamsService teamsService = new TeamsService();
+
             if (!id.HasValue)
             {
                 return RedirectToAction("List");

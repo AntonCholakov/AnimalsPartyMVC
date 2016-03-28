@@ -11,10 +11,10 @@ namespace AnimalsParty.Controllers
 {
     public class CitiesController : BaseController
     {
-        CitiesService citiesService = new CitiesService();
-
         public ActionResult List()
         {
+            CitiesService citiesService = new CitiesService();
+
             CitiesListVM model = new CitiesListVM();
             TryUpdateModel(model);
 
@@ -53,6 +53,8 @@ namespace AnimalsParty.Controllers
 
         public ActionResult Edit(int? id)
         {
+            CitiesService citiesService = new CitiesService();
+
             CitiesEditVM model = new CitiesEditVM();
             City city;
 
@@ -85,6 +87,8 @@ namespace AnimalsParty.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit()
         {
+            CitiesService citiesService = new CitiesService();
+
             CitiesEditVM model = new CitiesEditVM();
             TryUpdateModel(model);
 
@@ -120,6 +124,8 @@ namespace AnimalsParty.Controllers
 
         public ActionResult Delete(int? id)
         {
+            CitiesService citiesService = new CitiesService();
+
             if (!id.HasValue)
             {
                 return RedirectToAction("List");
