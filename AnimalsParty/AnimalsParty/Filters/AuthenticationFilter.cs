@@ -13,7 +13,7 @@ namespace AnimalsParty.Filters
         {
             if (HttpContext.Current.Response.Cookies["rememberMe"] != null)
             {
-                CookieService.AuthenticateUser();
+                //CookieService.AuthenticateUser();
             }
 
             if (AuthenticationService.LoggedUser == null)

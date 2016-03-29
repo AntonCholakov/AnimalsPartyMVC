@@ -11,7 +11,9 @@ namespace AnimalsParty.Services
         public static void AuthenticateUser()
         {
             HttpCookie cookie = HttpContext.Current.Response.Cookies["rememberMe"];
-            AuthenticationService.LoggedUser = new UsersRepository().GetAll().FirstOrDefault(u => u.RememberMeHash == cookie.Value);
+
+            if(cookie != null)
+                AuthenticationService.LoggedUser = new UsersRepository().GetAll().FirstOrDefault(u => u.RememberMeHash == cookie.Value);
         }
     }
 }

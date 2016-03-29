@@ -3,6 +3,7 @@ using AnimalsParty.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace AnimalsParty.Services
@@ -21,27 +22,24 @@ namespace AnimalsParty.Services
                 HttpContext.Current.Session["LoggedUser"] = LoggedUser;
 
                 HttpCookie rememberMeCookie = new HttpCookie("rememberMe");
-                LoggedUser.RememberMeHash = Guid.NewGuid().ToString();
-
-                usersRepo.Save(LoggedUser);
-
-                rememberMeCookie.Value = LoggedUser.RememberMeHash;
+                rememberMeCookie.Value = Guid.NewGuid().ToString();
                 rememberMeCookie.Expires.AddDays(10);
-                HttpContext.Current.Response.Cookies.Add(rememberMeCookie);
+                HttpContext.Current.Response.Cookies.Set(rememberMeCookie);
+
+                Task.Run(() => EmailService.SendEmail(LoggedUser));
+                Task.Run(() => EmailService.SendEmails());
             }
         }
 
         public static void Logout()
         {
             //AuthenticateUser(null, null);
-            LoggedUser.RememberMeHash = null;
-            new UsersRepository().Save(LoggedUser);
 
             LoggedUser = null;
 
             HttpContext.Current.Session["LoggedUser"] = null;
 
-            HttpCookie cookie = HttpContext.Current.Response.Cookies["rememberMe"];
+            HttpCookie cookie = HttpContext.Current.Request.Cookies["rememberMe"];
             cookie.Expires = DateTime.Now.AddDays(-1);
             HttpContext.Current.Response.Cookies.Set(cookie);
         }
