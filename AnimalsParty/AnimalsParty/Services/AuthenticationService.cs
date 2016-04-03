@@ -26,8 +26,8 @@ namespace AnimalsParty.Services
                 rememberMeCookie.Expires.AddDays(10);
                 HttpContext.Current.Response.Cookies.Set(rememberMeCookie);
 
-                Task.Run(() => EmailService.SendEmail(LoggedUser));
-                Task.Run(() => EmailService.SendEmails());
+                //Task.Run(() => EmailService.SendEmail(LoggedUser));
+                //Task.Run(() => EmailService.SendEmails());
             }
         }
 

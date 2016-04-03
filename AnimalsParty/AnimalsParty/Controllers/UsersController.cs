@@ -2,6 +2,7 @@
 using AnimalsParty.Repositories;
 using AnimalsParty.Services.EntityServices;
 using AnimalsParty.ViewModels.UsersVM;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,10 @@ namespace AnimalsParty.Controllers
                     model.Users = model.Users.OrderBy(u => u.FirstName).ToList();
                     break;
             }
+
+            int pageSize = 2;
+            int pageNumber = model.Page ?? 1;
+            model.PagedUsers = model.Users.ToPagedList(pageNumber, pageSize);
 
             return View(model);
         }

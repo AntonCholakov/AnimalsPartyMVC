@@ -1,4 +1,5 @@
 ﻿@model AnimalsParty.ViewModels.UsersVM.UsersListVM
+@using PagedList.Mvc
 
 @{
     ViewBag.Title = "List Users";
@@ -45,7 +46,7 @@ else
             <th></th>
         </tr>
 
-        @foreach (var item in Model.Users)
+        @foreach (var item in Model.PagedUsers)
         {
             <tr>
                 <td>
@@ -76,7 +77,13 @@ else
         }
 
     </table>
+    <br />
+    
+    <div>
+        Page @(Model.PagedUsers.PageCount < Model.PagedUsers.PageNumber ? 0 : Model.PagedUsers.PageNumber) of @Model.PagedUsers.PageCount
 
+    @Html.PagedListPager(Model.PagedUsers, page => Url.Action("List", new RouteValueDictionary { { "Page", page }, { "Search", Model.Search } }))
+    </div>
 }
 
 @section FooterSection {
